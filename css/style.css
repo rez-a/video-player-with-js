@@ -1,0 +1,12 @@
+:root {
+    --color-primary: #48D5FE;
+    --color-secondary: #D30446;
+}
+
+body {
+    background-image: url('../image/background.jpg');
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
