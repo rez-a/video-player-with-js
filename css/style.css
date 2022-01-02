@@ -5,8 +5,223 @@
 
 body {
     background-image: url('../image/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+i {
+    font-size: 1.3rem;
+}
+
+.content {
+    position: relative;
+    line-height: 1;
+}
+
+.content::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 70%, #000000);
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.content:hover::before {
+    opacity: 1;
+}
+
+.content:hover .primary-controler,
+.content:hover .video-ranges {
+    top: 0%;
+}
+
+.content:hover .full-screen {
+    bottom: 0%;
+}
+
+.controler {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    top: 0;
+}
+
+.primary-controler {
+    position: relative;
+    top: 100%;
+    transition: all 0.5s;
+}
+
+.full-screen {
+    position: relative;
+    bottom: 100%;
+    transition: all 0.5s;
+}
+
+.progressbar {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    position: relative;
+}
+
+.progressbar .inner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    z-index: 6;
+}
+
+.progressbar .bar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-image: radial-gradient(#ffffff00 65%, #979797 30%);
+}
+
+.progressbar .bar.right {
+    clip: rect(0, 50px, 50px, 25px);
+}
+
+.progressbar .bar.left {
+    transform: rotate(180deg);
+    clip: rect(0, 50px, 50px, 25px);
+}
+
+.progressbar .bar .progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-image: radial-gradient(#ffffff00 65%, #48D5FE 30%);
+    clip: rect(0, 50px, 50px, 25px);
+    z-index: 1;
+    transform: rotate(180deg);
+    transition: all 0.5s linear;
+}
+
+.progressbar .bar.right .progress {
+    transform: rotate(0deg);
+}
+
+.progressbar .bar.left .progress {
+    transition-delay: 1s;
+    transform: rotate(0deg);
+}
+
+.play {
+    color: var(--color-primary);
+}
+
+i:hover,
+i:focus {
+    color: var(--color-primary);
+    background-color: transparent;
+}
+
+.volume {
+    position: relative;
+}
+
+.volume:hover .range {
+    top: -55px;
+}
+
+.video-ranges {
+    position: relative;
+    top: 102%;
+    transition: all 0.5s;
+}
+
+.range {
+    position: absolute;
+    width: 78px;
+    height: 100%;
+    background-color: #ffffff;
+    top: 200px;
+    left: -10px;
+    transform: rotate( -90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.range-volume::-webkit-slider-thumb {
+    background-color: #48D5FE;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    border: none;
+}
+
+.range-volume:focus::-webkit-slider-thumb {
+    box-shadow: none;
+}
+
+.range::before {
+    position: absolute;
+    content: '';
+    background-color: transparent;
+    border-style: solid;
+    border-width: 5px 10px 5px 0;
+    border-color: transparent #ffffff transparent transparent;
+    left: 0;
+    bottom: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-70%, 60%);
+}
+
+.range-volume,
+.vidoe-range {
+    width: 90%;
+    padding: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+}
+
+.range-volume::-webkit-slider-thumb,
+.vidoe-range::-webkit-slider-thumb {
+    opacity: 0;
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #48D5FE;
+    cursor: pointer;
+    margin-top: -3px;
+}
+
+.content:hover .vidoe-range::-webkit-slider-thumb,
+.content:hover .range-volume::-webkit-slider-thumb {
+    opacity: 1;
+}
+
+.range-volume::-webkit-slider-runnable-track,
+.vidoe-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background-color: #dadada;
+    background-image: linear-gradient(to right, #48D5FE 80%, #48d3fe00 0%);
+    border-radius: 15px;
 }
