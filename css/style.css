@@ -85,6 +85,7 @@ i {
     transform: translate(-50%, -50%);
     background-color: transparent;
     z-index: 6;
+    overflow: hidden;
 }
 
 .progressbar .bar {
@@ -125,8 +126,24 @@ i {
     transform: rotate(0deg);
 }
 
-.play {
+.play-pause {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    transition: all 0.5s;
+}
+
+.play,
+.puase {
     color: var(--color-primary);
+}
+
+.puase {
+    position: absolute;
+    bottom: -50px;
 }
 
 i:hover,
