@@ -15,7 +15,7 @@
     <title>Video Player</title>
 </head>
 
-<body>
+<body onload="getTotalTime()">
 
     <main>
         <section>
@@ -30,11 +30,11 @@
                                 </div>
                                 <div class=" mb-2 d-flex flex-column justify-content-between align-items-center text-white">
                                     <div class="video-ranges w-100 px-3">
-                                        <input type="range" class="vidoe-range w-100 d-flex mb-2" min="0" max="100" step="1" value="80">
+                                        <input type="range" class="video-range w-100 d-flex mb-2" min="0" max="100" step="1" value="0">
                                     </div>
                                     <div class="primary-controler d-flex justify-content-between align-items-center text-white w-100">
-                                        <div class="show-time ms-3">
-                                            <span>00</span>:<span>00</span>:<span>00</span>
+                                        <div class="current-time ms-3">
+                                            <span class="hours">00</span> : <span class="minutes">00</span> : <span class="seconds">00</span>
                                         </div>
                                         <div class="icon-control d-flex align-items-center">
                                             <a class="text-white me-3" href="#"><i class="fas fa-sync"></i></a>
@@ -62,7 +62,7 @@
                                             </a>
                                         </div>
                                         <div class="total-time me-3">
-                                            <span>00</span>:<span>00</span>:<span>00</span>
+                                            <span class="hours">00</span> : <span class="minutes">00</span> : <span class="seconds">00</span>
                                         </div>
                                     </div>
                                 </div>
