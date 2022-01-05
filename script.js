@@ -5,6 +5,7 @@ let bcwr = document.querySelector('.bcwr');
 let totalTimeElement = document.querySelector('.total-time');
 let currentTimeElement = document.querySelector('.current-time');
 let primaryProgress = document.querySelector('.video-range');
+let secondaryProgress = document.querySelector('.progressbar');
 
 playPause.addEventListener('click', function() {
     if (video.paused) {
@@ -16,6 +17,10 @@ playPause.addEventListener('click', function() {
     }
 })
 
+primaryProgress.addEventListener('input', function(e) {
+    video.currentTime = (this.value / 100) * video.duration;
+})
+
 fwr.addEventListener('click', function() {
     video.currentTime = video.currentTime + 5;
 })
@@ -24,6 +29,7 @@ bcwr.addEventListener('click', function() {
 });
 video.addEventListener('timeupdate', function() {
     let progress = Math.floor((video.currentTime / video.duration) * 100);
+    showSecondaryProgress(progress);
     let root = document.querySelector(':root');
     primaryProgress.value = `${progress}`;
     root.style.setProperty('--progress', `${progress}%`);
@@ -51,8 +57,19 @@ const getTime = (time) => {
         secondsTotal
     }
 }
+const showSecondaryProgress = (progress) => {
+    if (progress > 50) {
+        let leftProgress = 180 - ((progress * 3.6) - 180);
+        secondaryProgress.querySelector('.bar.left .progress').style = `transform: rotate(-${Math.floor(leftProgress)}deg)`;
+        secondaryProgress.querySelector('.bar.right .progress').style = 'transform: rotate(0deg)';
+    } else {
+        let rightProgress = 180 - (progress * 3.6);
+        secondaryProgress.querySelector('.bar.right .progress').style = `transform: rotate(-${Math.floor(rightProgress)}deg)`;
+        secondaryProgress.querySelector('.bar.left .progress').style = 'transform: rotate(-180deg)';
+    }
+}
 
-function getTotalTime() {
+const getTotalTime = () => {
     let totalTime = getTime(Math.floor(video.duration));
     totalTimeElement.querySelector('.hours').textContent = totalTime.hoursTotal;
     totalTimeElement.querySelector('.minutes').textContent = totalTime.minutesTotal;
