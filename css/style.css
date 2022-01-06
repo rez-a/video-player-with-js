@@ -2,6 +2,7 @@
     --color-primary: #48D5FE;
     --color-secondary: #D30446;
     --progress: 0%;
+    --volume-progress: 25%;
 }
 
 body {
@@ -138,10 +139,10 @@ i {
     bottom: -50px;
 }
 
-i:hover,
-i:focus {
+i:hover {
     color: var(--color-primary);
     background-color: transparent;
+    cursor: pointer;
 }
 
 .volume {
@@ -171,11 +172,16 @@ i:focus {
     justify-content: center;
 }
 
+.range:hover {
+    cursor: pointer;
+}
+
 .range-volume::-webkit-slider-thumb {
     background-color: #48D5FE;
     box-shadow: none;
     outline: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
     border: none;
 }
 
@@ -231,7 +237,14 @@ i:focus {
     height: 5px;
     cursor: pointer;
     background-color: #dadada;
-    background-image: linear-gradient(to right, #48D5FE var(--progress), #48d3fe00 0%);
     border-radius: 15px;
     transition: all 0.5s;
+}
+
+.video-range::-webkit-slider-runnable-track {
+    background-image: linear-gradient(to right, #48D5FE var(--progress), #48d3fe00 0%);
+}
+
+.range-volume::-webkit-slider-runnable-track {
+    background-image: linear-gradient(to right, #48D5FE var(--volume-progress), #48d3fe00 0%);
 }

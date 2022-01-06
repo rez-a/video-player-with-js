@@ -6,6 +6,8 @@ let totalTimeElement = document.querySelector('.total-time');
 let currentTimeElement = document.querySelector('.current-time');
 let primaryProgress = document.querySelector('.video-range');
 let secondaryProgress = document.querySelector('.progressbar');
+let volumeProgress = document.querySelector('.range-volume');
+let volumeIcon = document.querySelector('.volume-icon i');
 
 playPause.addEventListener('click', function() {
     if (video.paused) {
@@ -41,6 +43,33 @@ video.addEventListener('timeupdate', function() {
         playPause.style.bottom = '0px';
     }
 })
+volumeIcon.addEventListener('click', function() {
+    this.classList.toggle('mute');
+    let root = document.querySelector(':root');
+    if (this.classList.contains('mute')) {
+        volumeProgress.value = 0;
+        video.volume = 0;
+        root.style.setProperty('--volume-progress', `0%`);
+        this.className = 'fa fa-volume-mute mute';
+    } else {
+        volumeProgress.value = 25;
+        video.volume = 0.25;
+        root.style.setProperty('--volume-progress', `25%`);
+        this.classList.replace('fa-volume-mute', 'fa-volume-down');
+    }
+})
+volumeProgress.addEventListener('input', function() {
+    let root = document.querySelector(':root');
+    root.style.setProperty('--volume-progress', `${this.value}%`)
+    video.volume = Number((this.value)) / 100;
+    if (Number(this.value) > 60) {
+        volumeIcon.className = 'fa fa-volume-up';
+    } else if (0 < Number(this.value) && Number(this.value) < 60) {
+        volumeIcon.className = 'fa fa-volume-down';
+    } else if (Number(this.value) === 0) {
+        volumeIcon.className = 'fa fa-volume-mute mute';
+    }
+})
 const getTimeBelowTen = (time) => {
     if (time < 10) {
         return `0${time}`;
@@ -74,4 +103,5 @@ const getTotalTime = () => {
     totalTimeElement.querySelector('.hours').textContent = totalTime.hoursTotal;
     totalTimeElement.querySelector('.minutes').textContent = totalTime.minutesTotal;
     totalTimeElement.querySelector('.seconds').textContent = totalTime.secondsTotal;
+    video.volume = 0.25;
 }
