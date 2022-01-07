@@ -26,6 +26,11 @@ i {
     box-shadow: none;
 }
 
+.btn:hover,
+a:hover {
+    color: #ffffff;
+}
+
 .content {
     position: relative;
     line-height: 1;
@@ -85,8 +90,8 @@ i {
 
 .full-screen.active,
 .repeat.active,
-.repeat.active:hover i,
-.full-screen.active:hover i {
+.btn.repeat.active:hover i,
+.btn.full-screen.active:hover i {
     color: #D30446;
 }
 
