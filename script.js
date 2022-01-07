@@ -1,3 +1,4 @@
+let videoContent = document.querySelector('.content');
 let video = document.querySelector('.media');
 let playPause = document.querySelector('.play-pause');
 let fwr = document.querySelector('.fwr');
@@ -8,6 +9,7 @@ let primaryProgress = document.querySelector('.video-range');
 let secondaryProgress = document.querySelector('.progressbar');
 let volumeProgress = document.querySelector('.range-volume');
 let volumeIcon = document.querySelector('.volume-icon i');
+let fullScreen = document.querySelector('.full-screen');
 
 playPause.addEventListener('click', function() {
     if (video.paused) {
@@ -68,6 +70,17 @@ volumeProgress.addEventListener('input', function() {
         volumeIcon.className = 'fa fa-volume-down';
     } else if (Number(this.value) === 0) {
         volumeIcon.className = 'fa fa-volume-mute mute';
+    }
+})
+fullScreen.addEventListener('click', function() {
+    this.classList.toggle('active');
+    if (!document.fullscreenElement) {
+        videoContent.requestFullscreen()
+            .catch(err => {
+                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
+            })
+    } else {
+        document.exitFullscreen();
     }
 })
 const getTimeBelowTen = (time) => {

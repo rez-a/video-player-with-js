@@ -20,6 +20,12 @@ i {
     font-size: 1.3rem;
 }
 
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
 .content {
     position: relative;
     line-height: 1;
@@ -66,9 +72,15 @@ i {
 }
 
 .full-screen {
+    color: #ffffff;
     position: relative;
     bottom: 100%;
     transition: all 0.5s;
+}
+
+.full-screen.active,
+.full-screen.active:hover i {
+    color: #D30446;
 }
 
 .progressbar {
