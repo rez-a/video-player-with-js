@@ -78,7 +78,14 @@ i {
     transition: all 0.5s;
 }
 
+.repeat {
+    color: #ffffff;
+    transition: all 0.5s;
+}
+
 .full-screen.active,
+.repeat.active,
+.repeat.active:hover i,
 .full-screen.active:hover i {
     color: #D30446;
 }

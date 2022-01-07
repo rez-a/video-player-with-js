@@ -10,6 +10,7 @@ let secondaryProgress = document.querySelector('.progressbar');
 let volumeProgress = document.querySelector('.range-volume');
 let volumeIcon = document.querySelector('.volume-icon i');
 let fullScreen = document.querySelector('.full-screen');
+let repeat = document.querySelector('.repeat');
 
 playPause.addEventListener('click', function() {
     if (video.paused) {
@@ -81,6 +82,14 @@ fullScreen.addEventListener('click', function() {
             })
     } else {
         document.exitFullscreen();
+    }
+})
+repeat.addEventListener('click', function() {
+    this.classList.toggle('active');
+    if (!video.loop) {
+        video.loop = true;
+    } else {
+        video.loop = false;
     }
 })
 const getTimeBelowTen = (time) => {
